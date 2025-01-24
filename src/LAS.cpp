@@ -39,6 +39,9 @@ LAS::LAS(S4 las, int ncpu)
   if (data.containsElementNamed("gpstime"))
     this->T = data["gpstime"];
 
+  if (data.containsElementNamed("ScanAngleRank"))
+    this->A = data["ScanAngleRank"];
+  
   this->npoints = X.size();
   this->ncpu = ncpu;
   this->filter.resize(npoints);
@@ -622,6 +625,7 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
 
     double x = X[i];
     double y = Y[i];
+    double scan_angle = A[i];
     // double z = Z[i]
     // double scan_angle = ScanAngleRank[i]
     // std::fabs(static_cast<double>(point.ScanAngleRank)); // Use the correct field name
