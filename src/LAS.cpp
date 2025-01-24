@@ -619,10 +619,10 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
 
     double x = X[i];
     double y = Y[i];
-    double scan_angle = std::fabs(ScanAngleRank[i]); // Ensure fabs is used correctly for floating-point numbers
+    // double scan_angle = std::fabs(ScanAngleRank[i]); // Ensure fabs is used correctly for floating-point numbers
 
-    int col = std::floor((x - xmin) / xres);
-    int row = std::floor((ymax - y) / yres);
+    // int col = std::floor((x - xmin) / xres);
+    // int row = std::floor((ymax - y) / yres);
 
     // // Handle edge cases for points on the boundaries
     // if (y == ymin) row = nrows - 1;
