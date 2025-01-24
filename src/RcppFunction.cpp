@@ -66,6 +66,13 @@ LogicalVector C_lowest(S4 las, List layout)
 }
 
 // [[Rcpp::export(rng = false)]]
+LogicalVector C_most_nadir(S4 las, List layout, bool use_min = true) {
+  LAS pt(las);
+  pt.cut_overlap_with_grid(layout, use_min);
+  return Rcpp::wrap(pt.filter);
+}
+
+// [[Rcpp::export(rng = false)]]
 SEXP C_in_polygon(S4 las, Rcpp::List polygons, bool by_poly)
 {
   LAS pt(las);
