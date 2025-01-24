@@ -29,6 +29,7 @@ class LAS
     void filter_local_maxima(NumericVector ws, double min_height, bool circular);
     void filter_local_maxima(NumericVector ws);
     void filter_with_grid(List layout, bool max);
+    void cut_overlap_with_grid(List layout, bool use_min);
     void filter_shape(int method, NumericVector th, int k);
     void filter_progressive_morphology(NumericVector ws, NumericVector th);
     void filter_isolated_voxel(double ws, unsigned int isolated);
