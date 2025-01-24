@@ -685,7 +685,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_lidR_C_smooth", (DL_FUNC) &_lidR_C_smooth, 6},
     {"_lidR_C_highest", (DL_FUNC) &_lidR_C_highest, 2},
     {"_lidR_C_lowest", (DL_FUNC) &_lidR_C_lowest, 2},
-    {"_lidR_C_most_nadir", (DL_FUNC) &_lidR_C_most_nadir, 3},
+    {"_lidR_C_most_nadir", (DL_FUNC) &_lidR_C_most_nadir, 2},
     {"_lidR_C_in_polygon", (DL_FUNC) &_lidR_C_in_polygon, 3},
     {"_lidR_C_lasdetectshape", (DL_FUNC) &_lidR_C_lasdetectshape, 6},
     {"_lidR_C_Wing2015", (DL_FUNC) &_lidR_C_Wing2015, 7},
