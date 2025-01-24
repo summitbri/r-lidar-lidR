@@ -66,9 +66,9 @@ LogicalVector C_lowest(S4 las, List layout)
 }
 
 // [[Rcpp::export(rng = false)]]
-LogicalVector C_most_nadir(S4 las, List layout, bool use_min = true) {
+LogicalVector C_most_nadir(S4 las, List layout) {
   LAS pt(las);
-  pt.cut_overlap_with_grid(layout, use_min);
+  pt.cut_overlap_with_grid(layout);
   return Rcpp::wrap(pt.filter);
 }
 
