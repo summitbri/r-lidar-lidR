@@ -641,7 +641,6 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout) {
     if (output[cell] == -1) {
       output[cell] = i; // Assign the first point to the cell
     } else {
-      double existing_angle = std::fabs(scan_angle);
       if (std::fabs(scan_angle) <  std::fabs(A[output[cell]])) {
         output[cell] = i; // Replace with the current point if condition is met
       }
