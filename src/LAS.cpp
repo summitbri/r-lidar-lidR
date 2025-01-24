@@ -601,6 +601,60 @@ void LAS::filter_with_grid(List layout, bool max)
   return;
 }
 
+// void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
+//   int ncols = layout["ncol"];
+//   int nrows = layout["nrow"];
+//   double xmin = layout["xmin"];
+//   double xmax = layout["xmax"];
+//   double ymin = layout["ymin"];
+//   double ymax = layout["ymax"];
+//   double xres = (xmax - xmin) / ncols;
+//   double yres = (ymax - ymin) / nrows;
+
+//   // Initialize grid for tracking overlaps
+//   std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
+
+//   for (unsigned int i = 0; i < npoints; i++) {
+//     if (skip[i]) continue;
+
+//     double x = X[i];
+//     double y = Y[i];
+//     double scan_angle = std::fabs(ScanAngleRank[i]); // Ensure fabs is used correctly for floating-point numbers
+
+//     int col = std::floor((x - xmin) / xres);
+//     int row = std::floor((ymax - y) / yres);
+
+//     // Handle edge cases for points on the boundaries
+//     if (y == ymin) row = nrows - 1;
+//     if (x == xmax) col = ncols - 1;
+
+//     if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
+//       Rcpp::stop("C++ unexpected internal error in 'cut_overlap_with_grid': point out of raster."); // # nocov
+//     }
+
+//     int cell = row * ncols + col;
+
+//     // Update grid with overlap logic
+//     if (output[cell] == -1) {
+//       output[cell] = i; // Assign the first point to the cell
+//     } else {
+//       double existing_angle = std::fabs(ScanAngleRank[output[cell]]);
+//       if ((use_min && scan_angle < existing_angle) || (!use_min && scan_angle > existing_angle)) {
+//         output[cell] = i; // Replace with the current point if condition is met
+//       }
+//     }
+//   }
+
+//   // Mark the selected points for cutting overlaps
+//   for (unsigned int i = 0; i < output.size(); i++) {
+//     if (output[i] != -1) {
+//       filter[output[i]] = true; // Mark the point as valid for the filter
+//     }
+//   }
+
+//   return;
+// }
+
 SEXP LAS::find_polygon_ids(Rcpp::List polygons, bool by_poly)
 {
   std::vector<std::vector<int>> res;
