@@ -178,7 +178,7 @@ BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< S4 >::type las(lasSEXP);
     Rcpp::traits::input_parameter< List >::type layout(layoutSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_min(use_minSEXP);
+    Rcpp::traits::input_parameter< bool >::type use_min(use_min);
     rcpp_result_gen = Rcpp::wrap(C_most_nadir(las, layout, use_min));
     return rcpp_result_gen;
 END_RCPP
