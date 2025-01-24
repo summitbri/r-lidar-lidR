@@ -615,7 +615,7 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
   std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
 
   // Assume "ScanAngleRank" is a column in the DataFrame
-    Rcpp::NumericVector scan_angle_vector = las_data["ScanAngleRank"]; // Access by column name
+  // Rcpp::NumericVector scan_angle_vector = las_data["ScanAngleRank"]; // Access by column name
   
   for (unsigned int i = 0; i < npoints; i++) {
     if (skip[i]) continue;
@@ -623,7 +623,6 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
     double x = X[i];
     double y = Y[i];
     // double scan_angle = std::fabs(static_cast<double>(point.ScanAngleRank)); // Use the correct field name
-
     // double scan_angle = std::fabs(data[i][13]); // Assuming column 14 is indexed as 13 (0-based index)
     // double scan_angle = std::fabs(ScanAngleRank[i]); // Ensure fabs is used correctly for floating-point numbers
 
