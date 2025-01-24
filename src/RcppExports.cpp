@@ -171,6 +171,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// C_most_nadir
+LogicalVector C_most_nadir(S4 las, List layout, bool use_min);
+RcppExport SEXP _lidR_C_most_nadir(SEXP lasSEXP, SEXP layoutSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::traits::input_parameter< S4 >::type las(lasSEXP);
+    Rcpp::traits::input_parameter< List >::type layout(layoutSEXP);
+    rcpp_result_gen = Rcpp::wrap(C_most_nadir(las, layout, use_min));
+    return rcpp_result_gen;
+END_RCPP
+}
 // C_in_polygon
 SEXP C_in_polygon(S4 las, Rcpp::List polygons, bool by_poly);
 RcppExport SEXP _lidR_C_in_polygon(SEXP lasSEXP, SEXP polygonsSEXP, SEXP by_polySEXP) {
