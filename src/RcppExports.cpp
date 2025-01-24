@@ -172,14 +172,13 @@ BEGIN_RCPP
 END_RCPP
 }
 // C_most_nadir
-LogicalVector C_most_nadir(S4 las, List layout, bool use_min);
+LogicalVector C_most_nadir(S4 las, List layout);
 RcppExport SEXP _lidR_C_most_nadir(SEXP lasSEXP, SEXP layoutSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::traits::input_parameter< S4 >::type las(lasSEXP);
     Rcpp::traits::input_parameter< List >::type layout(layoutSEXP);
-    Rcpp::traits::input_parameter< bool >::type use_min(use_min);
-    rcpp_result_gen = Rcpp::wrap(C_most_nadir(las, layout, use_min));
+    rcpp_result_gen = Rcpp::wrap(C_most_nadir(las, layout));
     return rcpp_result_gen;
 END_RCPP
 }
