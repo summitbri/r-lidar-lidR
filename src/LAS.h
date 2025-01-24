@@ -14,6 +14,7 @@ class LAS
     NumericVector Z;
     NumericVector T;
     IntegerVector I;
+    IntegerVector A;
     unsigned int ncpu;
     unsigned int npoints;
     std::vector<bool> filter;
