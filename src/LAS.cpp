@@ -624,13 +624,13 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
     int col = std::floor((x - xmin) / xres);
     int row = std::floor((ymax - y) / yres);
 
-    // Handle edge cases for points on the boundaries
-    if (y == ymin) row = nrows - 1;
-    if (x == xmax) col = ncols - 1;
+    // // Handle edge cases for points on the boundaries
+    // if (y == ymin) row = nrows - 1;
+    // if (x == xmax) col = ncols - 1;
 
-    if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
-      Rcpp::stop("C++ unexpected internal error in 'cut_overlap_with_grid': point out of raster."); // # nocov
-    }
+    // if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
+    //   Rcpp::stop("C++ unexpected internal error in 'cut_overlap_with_grid': point out of raster."); // # nocov
+    // }
 
 //     int cell = row * ncols + col;
 
