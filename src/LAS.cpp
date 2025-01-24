@@ -601,7 +601,7 @@ void LAS::filter_with_grid(List layout, bool max)
   return;
 }
 
-// void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
+void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
 //   int ncols = layout["ncol"];
 //   int nrows = layout["nrow"];
 //   double xmin = layout["xmin"];
@@ -653,7 +653,7 @@ void LAS::filter_with_grid(List layout, bool max)
 //   }
 
 //   return;
-// }
+}
 
 SEXP LAS::find_polygon_ids(Rcpp::List polygons, bool by_poly)
 {
