@@ -614,11 +614,11 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
   // Initialize grid for tracking overlaps
   std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
 
-  for (unsigned int i = 0; i < npoints; i++) {
-    if (skip[i]) continue;
+  // for (unsigned int i = 0; i < npoints; i++) {
+  //   if (skip[i]) continue;
 
-    double x = X[i];
-    double y = Y[i];
+  //   double x = X[i];
+  //   double y = Y[i];
     // double scan_angle = std::fabs(ScanAngleRank[i]); // Ensure fabs is used correctly for floating-point numbers
 
     // int col = std::floor((x - xmin) / xres);
