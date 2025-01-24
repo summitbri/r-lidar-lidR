@@ -193,6 +193,24 @@ lowest = function(res = 1)
   return(f)
 }
 
+most_nadir = function(res = 1)
+{
+  assert_is_a_number(res)
+  assert_all_are_positive(res)
+
+  res <- lazyeval::uq(res)
+
+  f = function(las)
+  {
+    assert_is_valid_context(LIDRCONTEXTDEC, "most_nadir")
+    layout <- raster_layout(las, res)
+    return(C_most_nadir(las, layout, use_min))
+  }
+
+  f <- plugin_decimate(f)
+  return(f)
+}
+
 #' Point Cloud Decimation Algorithm
 #'
 #' These functions are made to be used in \link{decimate_points}. They implements algorithm that
