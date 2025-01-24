@@ -604,7 +604,7 @@ void LAS::filter_with_grid(List layout, bool max)
   return;
 }
 
-void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
+void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min = true) {
   int ncols = layout["ncol"];
   int nrows = layout["nrow"];
   double xmin = layout["xmin"];
