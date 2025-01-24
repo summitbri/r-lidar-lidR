@@ -602,17 +602,17 @@ void LAS::filter_with_grid(List layout, bool max)
 }
 
 void LAS::cut_overlap_with_grid(Rcpp::List layout, bool use_min) {
-//   int ncols = layout["ncol"];
-//   int nrows = layout["nrow"];
-//   double xmin = layout["xmin"];
-//   double xmax = layout["xmax"];
-//   double ymin = layout["ymin"];
-//   double ymax = layout["ymax"];
-//   double xres = (xmax - xmin) / ncols;
-//   double yres = (ymax - ymin) / nrows;
+  int ncols = layout["ncol"];
+  int nrows = layout["nrow"];
+  double xmin = layout["xmin"];
+  double xmax = layout["xmax"];
+  double ymin = layout["ymin"];
+  double ymax = layout["ymax"];
+  double xres = (xmax - xmin) / ncols;
+  double yres = (ymax - ymin) / nrows;
 
-//   // Initialize grid for tracking overlaps
-//   std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
+  // Initialize grid for tracking overlaps
+  std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
 
 //   for (unsigned int i = 0; i < npoints; i++) {
 //     if (skip[i]) continue;
