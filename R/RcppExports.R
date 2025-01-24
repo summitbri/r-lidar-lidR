@@ -49,8 +49,8 @@ C_lowest <- function(las, layout) {
     .Call(`_lidR_C_lowest`, las, layout)
 }
 
-C_most_nadir <- function(las, layout, use_min) {
-    .Call(`_lidR_C_most_nadir`, las, layout, use_min)
+C_most_nadir <- function(las, layout) {
+    .Call(`_lidR_C_most_nadir`, las, layout)
 }
 
 C_in_polygon <- function(las, polygons, by_poly) {
