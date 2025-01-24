@@ -204,6 +204,7 @@ most_nadir = function(res = 1)
   {
     assert_is_valid_context(LIDRCONTEXTDEC, "most_nadir")
     layout <- raster_layout(las, res)
+    use_min <- TRUE
     return(C_most_nadir(las, layout, use_min))
   }
 
