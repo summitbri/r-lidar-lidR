@@ -547,7 +547,65 @@ void LAS::filter_local_maxima(NumericVector ws)
   return;
 }
 
-void LAS::cut_overlap_with_grid(Rcpp::List layout) {
+void LAS::filter_with_grid(List layout, bool max)
+{
+  int ncols   = layout["ncol"];
+  int nrows   = layout["nrow"];
+  double xmin = layout["xmin"];
+  double xmax = layout["xmax"];
+  double ymin = layout["ymin"];
+  double ymax = layout["ymax"];
+  double xres = (xmax - xmin) / ncols;
+  double yres = (ymax - ymin) / nrows;
+  int limit = (max) ? std::numeric_limits<int>::min() : std::numeric_limits<int>::max();
+
+  std::vector<int> output(ncols*nrows);
+  std::fill(output.begin(), output.end(), limit);
+
+  for (unsigned int i = 0 ; i < npoints ; i++)
+  {
+    if (skip[i]) continue;
+
+    double x = X[i];
+    double y = Y[i];
+    double z = Z[i];
+
+    int col = std::floor((x - xmin) / xres);
+    int row = std::floor((ymax - y) / yres);
+    if (y == ymin) row = nrows-1;
+    if (x == xmax) col = ncols-1;
+
+    if (row < 0 || row >= nrows || col < 0 || col >= ncols)
+      Rcpp::stop("C++ unexpected internal error in 'filter_with_grid': point out of raster."); // # nocov
+
+    int cell = row * ncols + col;
+
+    if (output[cell] == limit)
+    {
+      output[cell] = i;
+    }
+    else
+    {
+      double zref = Z[output[cell]];
+      if (max) {
+        if (zref < z) output[cell] = i;
+      } else {
+        if (zref > z) output[cell] = i;
+      }
+    }
+  }
+
+  for (unsigned int i = 0 ; i < output.size() ; i++)
+  {
+    if (output[i] != limit)
+      filter[output[i]] = true;
+  }
+
+  return;
+}
+
+void LAS::cut_overlap_with_grid(Rcpp::List layout) 
+{
   int ncols = layout["ncol"];
   int nrows = layout["nrow"];
   double xmin = layout["xmin"];
@@ -560,7 +618,8 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout) {
   // Initialize grid for tracking overlaps
   std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
    
-  for (unsigned int i = 0; i < npoints; i++) {
+  for (unsigned int i = 0; i < npoints; i++) 
+  {
     if (skip[i]) continue;
 
     double x = X[i];
@@ -581,24 +640,29 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout) {
     int cell = row * ncols + col;
 
     // Update grid with overlap logic
-    if (output[cell] == -1) {
+    if (output[cell] == -1) 
+    {
       output[cell] = i; // Assign the first point to the cell
-    } else {
+    } 
+    else 
+    {
       double existing_angle = std::fabs(output[cell])
       if (std::fabs(scan_angle) < existing_angle) {
         output[cell] = i;
       }
     }
-
+  }
+  
   // Mark the selected points for cutting overlaps
-  for (unsigned int i = 0; i < output.size(); i++) {
-    if (output[i] != -1) {
+  for (unsigned int i = 0; i < output.size(); i++)
+  {
+    if (output[i] != -1) 
       filter[output[i]] = true; // Mark the point as valid for the filter
-    }
+    
   }
 
   return;
-}}
+}
 
 
 
