@@ -606,38 +606,38 @@ void LAS::filter_with_grid(List layout, bool max)
 
 void LAS::cut_overlap_with_grid(Rcpp::List layout) 
 {
-  // int ncols = layout["ncol"];
-  // int nrows = layout["nrow"];
-  // double xmin = layout["xmin"];
-  // double xmax = layout["xmax"];
-  // double ymin = layout["ymin"];
-  // double ymax = layout["ymax"];
-  // double xres = (xmax - xmin) / ncols;
-  // double yres = (ymax - ymin) / nrows;
+  int ncols = layout["ncol"];
+  int nrows = layout["nrow"];
+  double xmin = layout["xmin"];
+  double xmax = layout["xmax"];
+  double ymin = layout["ymin"];
+  double ymax = layout["ymax"];
+  double xres = (xmax - xmin) / ncols;
+  double yres = (ymax - ymin) / nrows;
 
-  // // Initialize grid for tracking overlaps
-  // std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
+  // Initialize grid for tracking overlaps
+  std::vector<int> output(ncols * nrows, -1); // -1 indicates no point assigned to the cell
    
-  // for (unsigned int i = 0; i < npoints; i++) 
-  // {
-  //   if (skip[i]) continue;
+  for (unsigned int i = 0; i < npoints; i++) 
+  {
+    if (skip[i]) continue;
 
-  //   double x = X[i];
-  //   double y = Y[i];
-  //   double scan_angle = A[i];
+    double x = X[i];
+    double y = Y[i];
+    double scan_angle = A[i];
 
-  //   int col = std::floor((x - xmin) / xres);
-  //   int row = std::floor((ymax - y) / yres);
+    int col = std::floor((x - xmin) / xres);
+    int row = std::floor((ymax - y) / yres);
 
-  //   // Handle edge cases for points on the boundaries
-  //   if (y == ymin) row = nrows - 1;
-  //   if (x == xmax) col = ncols - 1;
+    // Handle edge cases for points on the boundaries
+    if (y == ymin) row = nrows - 1;
+    if (x == xmax) col = ncols - 1;
 
-  //   if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
-  //     Rcpp::stop("C++ unexpected internal error in 'cut_overlap_with_grid': point out of raster."); // # nocov
-  //   }
+    if (row < 0 || row >= nrows || col < 0 || col >= ncols) {
+      Rcpp::stop("C++ unexpected internal error in 'cut_overlap_with_grid': point out of raster."); // # nocov
+    }
 
-  //   int cell = row * ncols + col;
+    int cell = row * ncols + col;
 
   //   // Update grid with overlap logic
   //   if (output[cell] == -1) 
@@ -651,7 +651,7 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout)
   //       output[cell] = i;
   //     }
   //   }
-  // }
+  }
   
   // // Mark the selected points for cutting overlaps
   // for (unsigned int i = 0; i < output.size(); i++)
