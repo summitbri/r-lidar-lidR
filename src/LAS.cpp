@@ -646,10 +646,10 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout)
     } 
     else 
     {
-      double existing_angle = std::fabs(output[cell])
-  //     if (std::fabs(scan_angle) < existing_angle) {
-  //       output[cell] = i;
-  //     }
+      double existing_angle = std::fabs(output[cell]);
+      if (std::fabs(scan_angle) < existing_angle) {
+        output[cell] = i;
+      }
     }
   }
   
