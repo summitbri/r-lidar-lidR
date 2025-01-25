@@ -654,14 +654,14 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout)
   }
   
   // // Mark the selected points for cutting overlaps
-  // for (unsigned int i = 0; i < output.size(); i++)
-  // {
-  //   if (output[i] != -1) 
-  //     filter[output[i]] = true; // Mark the point as valid for the filter
+  for (unsigned int i = 0; i < output.size(); i++)
+  {
+    if (output[i] != -1) 
+      filter[output[i]] = true; // Mark the point as valid for the filter
     
-  // }
+  }
 
-  // return;
+  return;
 }
 
 SEXP LAS::find_polygon_ids(Rcpp::List polygons, bool by_poly)
