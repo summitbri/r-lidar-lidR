@@ -640,17 +640,17 @@ void LAS::cut_overlap_with_grid(Rcpp::List layout)
     int cell = row * ncols + col;
 
   //   // Update grid with overlap logic
-  //   if (output[cell] == -1) 
-  //   {
-  //     output[cell] = i; // Assign the first point to the cell
-  //   } 
-  //   else 
-  //   {
-  //     double existing_angle = std::fabs(output[cell])
+    if (output[cell] == -1) 
+    {
+      output[cell] = i; // Assign the first point to the cell
+    } 
+    else 
+    {
+      double existing_angle = std::fabs(output[cell])
   //     if (std::fabs(scan_angle) < existing_angle) {
   //       output[cell] = i;
   //     }
-  //   }
+    }
   }
   
   // // Mark the selected points for cutting overlaps
