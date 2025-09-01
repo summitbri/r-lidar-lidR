@@ -39,8 +39,14 @@ LAS::LAS(S4 las, int ncpu)
   if (data.containsElementNamed("gpstime"))
     this->T = data["gpstime"];
 
-  if (data.containsElementNamed("ScanAngleRank"))
-    this->A = data["ScanAngleRank"];
+  if (data.containsElementNamed("ScanAngleRank")) {
+  this->A = data["ScanAngleRank"];
+} else if (data.containsElementNamed("ScanAngle")) {
+  this->A = data["ScanAngle"];
+} else {
+  this->A = NumericVector(0); // empty if neither exists
+}
+
   
   this->npoints = X.size();
   this->ncpu = ncpu;
